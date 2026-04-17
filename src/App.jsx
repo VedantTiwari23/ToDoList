@@ -4,6 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import { Todoprovider } from './contexts'
+import { TodoForm, TodoItem } from './Components'
 
 //NOTE: TODOS EK ARRAY HAI OR TODO OBJECT TO CREATECONTEXT ME PASS KIYE HAI
 function App() {
@@ -49,6 +50,9 @@ function App() {
 
   //JAB BHI KUCH VALUE TODOS ME AAIYEGA HAMME USKO LOCAL STORAGE ME DALNA HAI USKE LIYE OR EK USEEFFECT LE RHE HAI
   //HAMLOG PICHLA USEEFFECT ME BHI KR SKTE THE LKIN YE MORE OPTIMISED WAY HAI
+  useEffect(()=>{
+    localStorage.setItem("todos",JSON.stringify(todos))
+  },[todos])
 
 
 
@@ -60,9 +64,15 @@ function App() {
                     <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
                     <div className="mb-4">
                         {/* Todo form goes here */} 
+                        <TodoForm/>
                     </div>
                     <div className="flex flex-wrap gap-y-3">
                         {/*Loop and Add TodoItem here */}
+                        {todos.map((todo)=>(
+                          <div key={todo.id} className='w-full'>
+                            <TodoItem  todo={todo}/>
+                          </div>
+                        ))}
                     </div>
                 </div>
             </div>
