@@ -1,0 +1,2 @@
+# Ensures GitHub Pages serves the raw Vite build output as-is instead of
+# processing it through Jekyll (which ignores files/folders starting with "_").
